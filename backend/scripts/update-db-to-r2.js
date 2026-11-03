@@ -29,15 +29,22 @@ async function main() {
   }
 
   // 2. Update Articles
+  const articleCovers = {
+    'quy-trinh-cuu-ho-cua-cuon-24h-ha-noi': `${R2_PREFIX}dv2.jpg`,
+    'huong-dan-cach-kiem-tra-va-phong-chong-xo-lo-cua-cuon': `${R2_PREFIX}huong-dan-cach-lap-dat-cua-cuon-khe-thoang-2.jpg`,
+    'bang-gia-lap-dat-cua-cuon-phu-kien-2026': `${R2_PREFIX}c5.jpg`,
+    'lo-cuon-la-gi-nen-lap-lo-cua-cuon-trong-hay-ngoai': `${R2_PREFIX}lo-cuon-la-gi-nen-lap-lo-cua-cuon-o-trong-nha-hay-ngoai-nha-2.jpg`,
+  };
+
   const articles = await prisma.article.findMany();
   console.log(`Found ${articles.length} articles to update`);
   for (const a of articles) {
-    const newThumbnail = convertUrl(a.thumbnail);
+    const newCover = articleCovers[a.slug] || convertUrl(a.coverImage) || `${R2_PREFIX}dv2.jpg`;
     await prisma.article.update({
       where: { id: a.id },
-      data: { thumbnail: newThumbnail },
+      data: { coverImage: newCover },
     });
-    console.log(`Updated article: ${a.title} -> ${newThumbnail}`);
+    console.log(`Updated article: ${a.title} -> ${newCover}`);
   }
 
   // 3. Update Settings
