@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("ADMIN") // ADMIN, EDITOR
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Setting {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       Json
+  description String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  name        String
+  slug        String    @unique
+  description String?
+  icon        String?
+  sortOrder   Int       @default(0)
+  isActive    Boolean   @default(true)
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id             String    @id @default(uuid())
+  name           String
+  slug           String    @unique
+  code           String?
+  categoryId     String
+  category       Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  price          Float?    // VND / m2 or per unit
+  salePrice      Float?
+  unit           String    @default("m²")
+  thickness      String?   // e.g. "1.1mm - 1.3mm"
+  material       String?   // e.g. "Nhôm hợp kim 6063 T5"
+  origin         String?   // e.g. "Austdoor Chính Hãng"
+  warrantyMonths Int       @default(24)
+  description    String?   // short excerpt
+  content        String?   // full html / markdown content
+  specs          Json?     // key-value specs
+  features       Json?     // string array of bullet points
+  images         Json      // array of image urls
+  isFeatured     Boolean   @default(false)
+  isHot          Boolean   @default(false)
+  inStock        Boolean   @default(true)
+  seoTitle       String?
+  seoDescription String?
+  seoKeywords    String?
+  sortOrder      Int       @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Article {
+  id             String   @id @default(uuid())
+  title          String
+  slug           String   @unique
+  excerpt        String?
+  content        String
+  coverImage     String?
+  category       String   @default("KIENTHUC") // CUUHO, KIENTHUC, BAOGIA, DUAN
+  author         String   @default("Cửa Cuốn Thủ Đô")
+  tags           Json?    // string array
+  isPublished    Boolean  @default(true)
+  viewCount      Int      @default(0)
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model QuoteRequest {
+  id             String   @id @default(uuid())
+  customerName   String
+  phone          String
+  address        String?
+  serviceType    String   // CUU_HO_247, BAO_GIA_LAP_MOI, SUA_CHUA, THAY_LINH_KIEN
+  doorType       String?  // Khe thoáng, tấm liền, etc.
+  width          Float?   // meters
+  height         Float?   // meters
+  estimatedPrice Float?   // calculated VND
+  notes          String?
+  status         String   @default("PENDING") // PENDING, CONTACTED, COMPLETED, CANCELLED
+  adminNote      String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Branch {
+  id        String   @id @default(uuid())
+  name      String
+  address   String
+  district  String
+  phone     String
+  hotline   String
+  isMain    Boolean  @default(false)
+  mapUrl    String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
