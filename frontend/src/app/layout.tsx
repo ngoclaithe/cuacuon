@@ -1,10 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { getSiteSettings, getCategories, getBranches } from '@/lib/api';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import FloatingContact from '@/components/FloatingContact';
-import SchemaJsonLd from '@/components/SchemaJsonLd';
+import { getSiteSettings } from '@/lib/api';
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
@@ -63,30 +59,19 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [settings, categories, branches] = await Promise.all([
-    getSiteSettings(),
-    getCategories(),
-    getBranches(),
-  ]);
-
   return (
     <html lang="vi" className="scroll-smooth">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="min-h-screen flex flex-col font-sans antialiased text-slate-800 bg-slate-50 selection:bg-brand-500 selection:text-white">
-        <SchemaJsonLd settings={settings} />
-        <Header settings={settings} categories={categories} />
-        <main className="flex-1">{children}</main>
-        <FloatingContact settings={settings} />
-        <Footer settings={settings} branches={branches} />
+      <body className="min-h-screen font-sans antialiased text-slate-800 bg-slate-50 selection:bg-brand-500 selection:text-white">
+        {children}
       </body>
     </html>
   );
 }
-
