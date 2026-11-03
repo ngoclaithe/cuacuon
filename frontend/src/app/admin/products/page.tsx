@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Package, Plus, Trash2, Edit, CheckCircle, Search, AlertCircle } from 'lucide-react';
 import { Product, Category } from '@/types';
+import { API_BASE } from '@/lib/api';
 
 export default function AdminProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -24,8 +25,8 @@ export default function AdminProductsPage() {
   const fetchProducts = async () => {
     try {
       const [prodRes, catRes] = await Promise.all([
-        fetch('http://localhost:4000/api/products?limit=50'),
-        fetch('http://localhost:4000/api/categories'),
+        fetch(`${API_BASE}/products?limit=50`),
+        fetch(`${API_BASE}/categories`),
       ]);
 
       if (prodRes.ok) {
@@ -53,7 +54,7 @@ export default function AdminProductsPage() {
     const token = localStorage.getItem('cuacuon_token');
 
     try {
-      const res = await fetch('http://localhost:4000/api/products', {
+      const res = await fetch(`${API_BASE}/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +89,7 @@ export default function AdminProductsPage() {
     const token = localStorage.getItem('cuacuon_token');
 
     try {
-      const res = await fetch(`http://localhost:4000/api/products/${id}`, {
+      const res = await fetch(`${API_BASE}/products/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

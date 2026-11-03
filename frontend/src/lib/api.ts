@@ -1,6 +1,6 @@
 import { SiteSettings, Category, Product, Article, Branch, QuoteRequest } from '@/types';
 
-const API_BASE = (typeof window === 'undefined' && process.env.INTERNAL_API_URL)
+export const API_BASE = (typeof window === 'undefined' && process.env.INTERNAL_API_URL)
   ? process.env.INTERNAL_API_URL
   : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api');
 

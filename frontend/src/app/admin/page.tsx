@@ -13,6 +13,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { QuoteRequest } from '@/types';
+import { API_BASE } from '@/lib/api';
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState({ total: 0, pending: 0, contacted: 0, completed: 0 });
@@ -24,10 +25,10 @@ export default function AdminDashboardPage() {
       const token = localStorage.getItem('cuacuon_token');
       try {
         const [statsRes, quotesRes] = await Promise.all([
-          fetch('http://localhost:4000/api/quotes/stats', {
+          fetch(`${API_BASE}/quotes/stats`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch('http://localhost:4000/api/quotes?limit=5', {
+          fetch(`${API_BASE}/quotes?limit=5`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);

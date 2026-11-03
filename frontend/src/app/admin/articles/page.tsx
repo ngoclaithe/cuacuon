@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { FileText, Plus, Trash2, Eye, Search } from 'lucide-react';
 import { Article } from '@/types';
+import { API_BASE } from '@/lib/api';
 
 export default function AdminArticlesPage() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -20,7 +21,7 @@ export default function AdminArticlesPage() {
   const fetchArticles = async () => {
     const token = localStorage.getItem('cuacuon_token');
     try {
-      const res = await fetch('http://localhost:4000/api/articles/admin', {
+      const res = await fetch(`${API_BASE}/articles/admin`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -43,7 +44,7 @@ export default function AdminArticlesPage() {
     const token = localStorage.getItem('cuacuon_token');
 
     try {
-      const res = await fetch('http://localhost:4000/api/articles', {
+      const res = await fetch(`${API_BASE}/articles`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +75,7 @@ export default function AdminArticlesPage() {
     const token = localStorage.getItem('cuacuon_token');
 
     try {
-      const res = await fetch(`http://localhost:4000/api/articles/${id}`, {
+      const res = await fetch(`${API_BASE}/articles/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

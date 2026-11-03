@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { PhoneCall, AlertTriangle, CheckCircle, Clock, Search, MessageSquare, Phone } from 'lucide-react';
 import { QuoteRequest } from '@/types';
+import { API_BASE } from '@/lib/api';
 
 export default function AdminQuotesPage() {
   const [quotes, setQuotes] = useState<QuoteRequest[]>([]);
@@ -13,8 +14,8 @@ export default function AdminQuotesPage() {
   const fetchQuotes = async () => {
     const token = localStorage.getItem('cuacuon_token');
     const url = filterStatus
-      ? `http://localhost:4000/api/quotes?status=${filterStatus}`
-      : 'http://localhost:4000/api/quotes';
+      ? `${API_BASE}/quotes?status=${filterStatus}`
+      : `${API_BASE}/quotes`;
 
     try {
       const res = await fetch(url, {
@@ -40,7 +41,7 @@ export default function AdminQuotesPage() {
     const note = adminNoteInput[id];
 
     try {
-      const res = await fetch(`http://localhost:4000/api/quotes/${id}/status`, {
+      const res = await fetch(`${API_BASE}/quotes/${id}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

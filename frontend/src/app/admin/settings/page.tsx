@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Settings, Save, CheckCircle2, AlertCircle, Sparkles, Globe, Phone, Image as ImageIcon } from 'lucide-react';
+import { API_BASE } from '@/lib/api';
 
 export default function AdminSettingsPage() {
   const [activeTab, setActiveTab] = useState<'general' | 'seo' | 'banners'>('general');
@@ -37,7 +38,7 @@ export default function AdminSettingsPage() {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const res = await fetch('http://localhost:4000/api/settings/public');
+        const res = await fetch(`${API_BASE}/settings/public`);
         if (res.ok) {
           const data = await res.json();
           if (data.general_config) setGeneralConfig(data.general_config);
@@ -63,7 +64,7 @@ export default function AdminSettingsPage() {
     const token = localStorage.getItem('cuacuon_token');
 
     try {
-      const res = await fetch('http://localhost:4000/api/settings', {
+      const res = await fetch(`${API_BASE}/settings`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
