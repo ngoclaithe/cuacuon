@@ -16,13 +16,13 @@ export default function HeroSlider({ settings }: HeroSliderProps) {
   const banners = hero_banners.length > 0 ? hero_banners : [
     {
       id: 1,
-      tag: 'CỨU HỘ KHẨN CẤP 24/24',
-      title: 'Cứu Hộ Cửa Cuốn Hà Nội Có Mặt Sau 15 Phút',
+      tag: 'Cứu hộ khẩn cấp 24/24',
+      title: 'Cứu hộ cửa cuốn Hà Nội có mặt sau 15 phút',
       subtitle: 'Kẹt nan, đứt cót, chập hộp tín hiệu, hỏng mô tơ, mất chìa khóa... Đội ngũ kỹ thuật túc trực tại 12 quận nội thành giải quyết triệt để sự cố.',
       image: '/assets/Slide2-1894x708-1.jpg',
-      ctaText: 'Gọi Cứu Hộ: 0986 888 121',
+      ctaText: 'Gọi cứu hộ: 0986 888 121',
       ctaLink: 'tel:0986888121',
-      secondaryText: 'Dự Toán Chi Phí',
+      secondaryText: 'Dự toán chi phí',
       secondaryLink: '#calculator',
     }
   ];
@@ -66,7 +66,7 @@ export default function HeroSlider({ settings }: HeroSliderProps) {
             {/* Subdued Elegant Pill Badge */}
             <div className="inline-flex items-center space-x-2 bg-orange-500/15 border border-orange-500/30 text-orange-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-orange-400"></span>
-              <span>{current.tag || 'CỨU HỘ KHẨN CẤP 24/24'}</span>
+              <span>{current.tag || 'Cứu hộ khẩn cấp 24/24'}</span>
             </div>
 
             {/* Main Title */}
@@ -86,7 +86,7 @@ export default function HeroSlider({ settings }: HeroSliderProps) {
                 className="py-3.5 px-6 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm shadow-lg shadow-orange-950/30 transition flex items-center justify-center space-x-2.5"
               >
                 <Phone className="w-4 h-4" />
-                <span>GỌI CỨU HỘ: {hotline}</span>
+                <span>Gọi cứu hộ: {hotline}</span>
               </a>
 
               <a
@@ -94,7 +94,7 @@ export default function HeroSlider({ settings }: HeroSliderProps) {
                 className="py-3.5 px-6 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/20 backdrop-blur-sm transition flex items-center justify-center space-x-2"
               >
                 <Calculator className="w-4 h-4 text-orange-400" />
-                <span>Dự Toán Chi Phí Nhanh</span>
+                <span>Dự toán chi phí</span>
               </a>
             </div>
 
@@ -137,19 +137,19 @@ export default function HeroSlider({ settings }: HeroSliderProps) {
       <div className="bg-slate-900 border-t border-slate-800 text-white py-4 px-4">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           <div className="border-r border-slate-800 last:border-none">
-            <div className="text-xl sm:text-2xl font-black text-white">12+ Năm</div>
+            <div className="text-xl sm:text-2xl font-black text-white">12+ năm</div>
             <div className="text-[11px] text-slate-400 mt-0.5">Kinh nghiệm phân phối & cứu hộ</div>
           </div>
           <div className="border-r border-slate-800 last:border-none">
-            <div className="text-xl sm:text-2xl font-black text-white">25,000+</div>
+            <div className="text-xl sm:text-2xl font-black text-white">25.000+</div>
             <div className="text-[11px] text-slate-400 mt-0.5">Khách hàng tin chọn Thủ Đô</div>
           </div>
           <div className="border-r border-slate-800 last:border-none">
-            <div className="text-xl sm:text-2xl font-black text-white">12 Cơ Sở</div>
+            <div className="text-xl sm:text-2xl font-black text-white">12 cơ sở</div>
             <div className="text-[11px] text-slate-400 mt-0.5">Phủ khắp các quận Hà Nội</div>
           </div>
           <div>
-            <div className="text-xl sm:text-2xl font-black text-orange-500">15 Phút</div>
+            <div className="text-xl sm:text-2xl font-black text-orange-500">15 phút</div>
             <div className="text-[11px] text-slate-400 mt-0.5">Thời gian có mặt tận nơi</div>
           </div>
         </div>

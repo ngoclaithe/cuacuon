@@ -31,17 +31,17 @@ export default function Header({ settings, categories }: HeaderProps) {
   const hotlineClean = hotline.replace(/\s+/g, '');
 
   const navLinks = [
-    { name: 'Trang Chủ', href: '/' },
+    { name: 'Trang chủ', href: '/' },
     {
-      name: 'Sản Phẩm',
+      name: 'Sản phẩm',
       href: '/san-pham',
       hasDropdown: true,
     },
-    { name: 'Bảng Giá 2026', href: '/bang-gia' },
-    { name: 'Cứu Hộ 24/7', href: '/dich-vu' },
-    { name: 'Cẩm Nang', href: '/tin-tuc' },
-    { name: 'Chi Nhánh', href: '/lien-he#branches' },
-    { name: 'Liên Hệ', href: '/lien-he' },
+    { name: 'Bảng giá 2026', href: '/bang-gia' },
+    { name: 'Cứu hộ 24/7', href: '/dich-vu' },
+    { name: 'Cẩm nang', href: '/tin-tuc' },
+    { name: 'Chi nhánh', href: '/lien-he#branches' },
+    { name: 'Liên hệ', href: '/lien-he' },
   ];
 
   return (
@@ -56,7 +56,7 @@ export default function Header({ settings, categories }: HeaderProps) {
             </span>
             <span className="font-semibold text-white uppercase tracking-wider flex items-center gap-1.5 shrink-0">
               <ShieldAlert className="w-3.5 h-3.5 text-orange-400" />
-              Cứu Hộ Cửa Cuốn 24/24:
+              Cứu hộ cửa cuốn 24/24:
             </span>
             <span className="hidden sm:inline text-slate-300 truncate">
               Kỹ thuật viên túc trực tại 12 quận Hà Nội, có mặt sau 15 phút
@@ -66,7 +66,7 @@ export default function Header({ settings, categories }: HeaderProps) {
           <div className="flex items-center space-x-4 shrink-0 text-xs">
             <div className="hidden md:flex items-center space-x-1.5 text-slate-400">
               <Clock className="w-3.5 h-3.5" />
-              <span>Phục vụ xuyên đêm & ngày Lễ</span>
+              <span>Phục vụ 24/7 & ngày lễ</span>
             </div>
             <a
               href={`tel:${hotlineClean}`}
@@ -125,7 +125,7 @@ export default function Header({ settings, categories }: HeaderProps) {
                     {productDropdownOpen && (
                       <div className="absolute top-full left-0 w-64 bg-white rounded-2xl shadow-xl border border-slate-200/80 py-2.5 z-50 animate-in fade-in duration-150">
                         <div className="px-4 py-1 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                          Danh Mục Cửa Cuốn
+                          Danh mục cửa cuốn
                         </div>
                         {categories.map((cat) => (
                           <Link
@@ -174,7 +174,7 @@ export default function Header({ settings, categories }: HeaderProps) {
               className="inline-flex items-center space-x-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition"
             >
               <Calculator className="w-3.5 h-3.5 text-orange-600" />
-              <span>Dự Toán Giá</span>
+              <span>Dự toán giá</span>
             </Link>
 
             <a
@@ -227,14 +227,14 @@ export default function Header({ settings, categories }: HeaderProps) {
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center py-2.5 px-4 bg-slate-100 font-semibold text-slate-800 rounded-xl text-sm"
             >
-              Dự Toán Chi Phí Cửa Cuốn
+              Dự toán chi phí
             </Link>
             <a
               href={`tel:${hotlineClean}`}
               className="w-full text-center py-2.5 px-4 bg-orange-600 text-white font-bold rounded-xl shadow flex items-center justify-center space-x-2 text-sm"
             >
               <Phone className="w-4 h-4" />
-              <span>Gọi Cứu Hộ ({hotline})</span>
+              <span>Gọi cứu hộ ({hotline})</span>
             </a>
           </div>
         </div>

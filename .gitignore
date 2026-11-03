@@ -8,6 +8,9 @@ backend/.env.*
 frontend/.env
 frontend/.env.*
 !frontend/.env.example
+cms/.env
+cms/.env.*
+!cms/.env.example
 
 # Dependencies
 node_modules/
@@ -25,6 +28,7 @@ build/
 backend/dist/
 frontend/.next/
 frontend/out/
+cms/dist/
 
 # Uploads directory (all uploads go to Cloudflare R2)
 uploads/

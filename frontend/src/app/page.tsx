@@ -50,10 +50,10 @@ export default async function HomePage() {
           <div className="text-center max-w-3xl mx-auto mb-10">
             <span className="inline-flex items-center space-x-1.5 bg-orange-500/10 border border-orange-500/20 text-orange-400 font-semibold text-xs uppercase px-3 py-1 rounded-full mb-3">
               <ShieldAlert className="w-3.5 h-3.5" />
-              <span>Dịch Vụ Cứu Hộ Khẩn Cấp 24/24</span>
+              <span>Dịch vụ cứu hộ khẩn cấp 24/24</span>
             </span>
             <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white">
-              Cửa Cuốn Gặp Sự Cố? Có Mặt Sau 15 Phút
+              Cửa cuốn gặp sự cố? Có mặt sau 15 phút
             </h2>
             <p className="mt-3 text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
               Đội thợ cơ động tại 12 quận nội thành Hà Nội xử lý dứt điểm các lỗi kẹt nan,
@@ -67,9 +67,9 @@ export default async function HomePage() {
               <div className="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-400 font-mono font-bold text-sm flex items-center justify-center mb-4 border border-orange-500/20">
                 01
               </div>
-              <h3 className="font-bold text-base text-white mb-1.5">Tiếp Nhận Cuộc Gọi</h3>
+              <h3 className="font-bold text-base text-white mb-1.5">Tiếp nhận yêu cầu</h3>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Tổng đài định vị vị trí và điều phối kỹ thuật viên gần nhất đang túc trực tại địa bàn của bạn.
+                Tổng đài tiếp nhận thông tin và điều phối kỹ thuật viên gần nhất đang túc trực tại địa bàn của bạn.
               </p>
             </div>
 
@@ -78,9 +78,9 @@ export default async function HomePage() {
               <div className="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-400 font-mono font-bold text-sm flex items-center justify-center mb-4 border border-orange-500/20">
                 02
               </div>
-              <h3 className="font-bold text-base text-white mb-1.5">Có Mặt Sau 15 Phút</h3>
+              <h3 className="font-bold text-base text-white mb-1.5">Có mặt sau 15 phút</h3>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Kỹ thuật viên di chuyển xe máy chuyên dụng, trang bị đầy đủ dụng cụ và linh kiện thay thế chuẩn hãng.
+                Kỹ thuật viên di chuyển xe máy chuyên dụng, trang bị đầy đủ dụng cụ và linh kiện thay thế chính hãng.
               </p>
             </div>
 
@@ -89,7 +89,7 @@ export default async function HomePage() {
               <div className="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-400 font-mono font-bold text-sm flex items-center justify-center mb-4 border border-orange-500/20">
                 03
               </div>
-              <h3 className="font-bold text-base text-white mb-1.5">Báo Giá Minh Bạch</h3>
+              <h3 className="font-bold text-base text-white mb-1.5">Báo giá minh bạch</h3>
               <p className="text-xs text-slate-400 leading-relaxed">
                 Khảo sát nguyên nhân, giải thích phương án kỹ thuật và báo giá niêm yết trước khi tiến hành sửa.
               </p>
@@ -100,7 +100,7 @@ export default async function HomePage() {
               <div className="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-400 font-mono font-bold text-sm flex items-center justify-center mb-4 border border-orange-500/20">
                 04
               </div>
-              <h3 className="font-bold text-base text-white mb-1.5">Nghiệm Thu & Bảo Hành</h3>
+              <h3 className="font-bold text-base text-white mb-1.5">Nghiệm thu & bàn giao</h3>
               <p className="text-xs text-slate-400 leading-relaxed">
                 Vận hành thử nghiệm mượt mà, dán tem bảo hành và viết phiếu bàn giao rõ ràng cho gia chủ.
               </p>
@@ -113,7 +113,7 @@ export default async function HomePage() {
               className="inline-flex items-center space-x-2 bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-lg transition"
             >
               <Phone className="w-4 h-4" />
-              <span>Gọi Thợ Cứu Hộ: {hotline}</span>
+              <span>Gọi thợ cứu hộ: {hotline}</span>
             </a>
           </div>
         </div>
@@ -125,10 +125,10 @@ export default async function HomePage() {
           <div>
             <div className="inline-flex items-center space-x-1.5 bg-orange-50 text-orange-700 text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-2">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Sản Phẩm Tiêu Biểu</span>
+              <span>Sản phẩm tiêu biểu</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Cửa Cuốn Austdoor Đồng Bộ Chính Hãng
+              Cửa cuốn Austdoor chính hãng đồng bộ
             </h2>
             <p className="mt-1 text-slate-600 text-xs sm:text-sm">
               Nan nhôm hợp kim AL6063 T5 độ bền trên 25 năm, vận hành siêu êm và tích hợp công nghệ chống sao chép ARC.
@@ -150,7 +150,7 @@ export default async function HomePage() {
             href="/san-pham"
             className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-white whitespace-nowrap shadow-sm"
           >
-            Tất Cả ({productsData.total})
+            Tất cả ({productsData.total})
           </Link>
           {categories.map((cat) => (
             <Link
@@ -179,10 +179,10 @@ export default async function HomePage() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="inline-flex items-center space-x-1.5 bg-slate-100 text-slate-700 text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
             <Award className="w-3.5 h-3.5 text-orange-600" />
-            <span>Cam Kết Dịch Vụ</span>
+            <span>Cam kết dịch vụ</span>
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-            Vì Sao Khách Hàng Tin Chọn Thủ Đô Door?
+            Vì sao khách hàng tin chọn Thủ Đô Door?
           </h2>
           <p className="mt-2 text-slate-600 text-xs sm:text-sm">
             Hơn 12 năm xây dựng niềm tin bằng sự minh bạch, chuẩn xác và trách nhiệm với mọi công trình.
@@ -194,7 +194,7 @@ export default async function HomePage() {
             <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center mb-5">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-2">100% Linh Kiện Chính Hãng</h3>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">100% linh kiện chính hãng</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Toàn bộ nan cửa, mô tơ, hộp điều khiển và bình lưu điện đều có tem bảo hành điện tử chính hãng từ Austdoor và Doortech.
             </p>
@@ -204,7 +204,7 @@ export default async function HomePage() {
             <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center mb-5">
               <Clock className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-2">Cứu Hộ Tốc Độ 15 Phút</h3>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">Cứu hộ có mặt sau 15 phút</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Mạng lưới cơ sở phân bổ đều khắp 12 quận Hà Nội giúp kỹ thuật viên tiếp cận nhanh nhất, sẵn sàng phục vụ 24/24.
             </p>
@@ -214,7 +214,7 @@ export default async function HomePage() {
             <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center mb-5">
               <CheckCircle className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-2">Giá Chuẩn Niêm Yết</h3>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">Giá niêm yết minh bạch</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Khảo sát báo giá công khai trước khi làm. Tuyệt đối không có tình trạng phát sinh chi phí hay tăng giá ban đêm.
             </p>
@@ -228,10 +228,10 @@ export default async function HomePage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
             <div>
               <span className="text-orange-400 font-semibold text-xs uppercase tracking-wider">
-                Hình Ảnh Thực Tế
+                Hình ảnh thực tế
               </span>
               <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white mt-1">
-                Công Trình Tiêu Biểu Đã Hoàn Thiện
+                Công trình tiêu biểu đã hoàn thiện
               </h2>
             </div>
             <p className="text-slate-400 text-xs sm:text-sm max-w-md mt-2 md:mt-0">
@@ -247,8 +247,8 @@ export default async function HomePage() {
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
-                <span className="text-orange-400 text-[10px] font-bold uppercase">Biệt Thự Cao Cấp</span>
-                <h4 className="text-white font-bold text-sm mt-0.5">Cửa cuốn Austdoor C70 Siêu Thoáng - Vinhomes</h4>
+                <span className="text-orange-400 text-[10px] font-bold uppercase">Biệt thự cao cấp</span>
+                <h4 className="text-white font-bold text-sm mt-0.5">Cửa cuốn Austdoor C70 siêu thoáng - Vinhomes</h4>
               </div>
             </div>
 
@@ -259,7 +259,7 @@ export default async function HomePage() {
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
-                <span className="text-orange-400 text-[10px] font-bold uppercase">Nhà Phố Mặt Tiền</span>
+                <span className="text-orange-400 text-[10px] font-bold uppercase">Nhà phố mặt tiền</span>
                 <h4 className="text-white font-bold text-sm mt-0.5">Cửa cuốn nan nhôm khe thoáng A50 - Trung Kính</h4>
               </div>
             </div>
@@ -284,10 +284,10 @@ export default async function HomePage() {
         <div className="text-center max-w-3xl mx-auto mb-10">
           <span className="inline-flex items-center space-x-1.5 bg-slate-100 text-slate-700 text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
             <MapPin className="w-3.5 h-3.5 text-orange-600" />
-            <span>Mạng Lưới Kỹ Thuật</span>
+            <span>Mạng lưới kỹ thuật</span>
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-            12 Điểm Chốt Cứu Hộ Tại Các Quận Hà Nội
+            12 điểm chốt cứu hộ tại các quận Hà Nội
           </h2>
           <p className="mt-2 text-slate-600 text-xs sm:text-sm">
             Kỹ thuật viên túc trực tại địa bàn, gọi điện trực tiếp để thợ di chuyển ngay sau 15 phút.
