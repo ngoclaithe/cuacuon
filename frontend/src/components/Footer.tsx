@@ -211,9 +211,14 @@ export default function Footer({ settings, branches }: FooterProps) {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
           <p>© {new Date().getFullYear()} Thủ Đô Door (cuacuonthudo.com). Bảo lưu mọi quyền.</p>
           <div className="flex items-center space-x-6">
-            <Link href="/admin/login" className="hover:text-slate-400 transition">
-              Quản Trị CMS
-            </Link>
+            <a
+              href="https://cms-cuacuon.dosutech.site"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-slate-400 transition"
+            >
+              Quản trị CMS
+            </a>
             <Link href="/sitemap.xml" className="hover:text-slate-400 transition">
               Sitemap
             </Link>
