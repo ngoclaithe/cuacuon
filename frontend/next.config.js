@@ -14,6 +14,20 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: 'https://cms-cuacuon.dosutech.site',
+        permanent: false,
+      },
+      {
+        source: '/admin/:path*',
+        destination: 'https://cms-cuacuon.dosutech.site',
+        permanent: false,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

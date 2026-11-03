@@ -10,6 +10,8 @@ import {
   Shield,
   Menu,
   X,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { SITE_URL } from '../config';
 
@@ -18,9 +20,18 @@ interface SidebarProps {
   setActiveTab: (tab: string) => void;
   onLogout: () => void;
   userName: string;
+  isCollapsed: boolean;
+  setIsCollapsed: (v: boolean | ((prev: boolean) => boolean)) => void;
 }
 
-export default function Sidebar({ activeTab, setActiveTab, onLogout, userName }: SidebarProps) {
+export default function Sidebar({
+  activeTab,
+  setActiveTab,
+  onLogout,
+  userName,
+  isCollapsed,
+  setIsCollapsed,
+}: SidebarProps) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const navItems = [
@@ -34,16 +45,20 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, userName }:
   return (
     <>
       {/* Mobile top bar */}
-      <div className="lg:hidden bg-slate-950 border-b border-slate-800 p-4 flex items-center justify-between">
+      <div className="lg:hidden bg-white border-b border-slate-200 p-4 flex items-center justify-between sticky top-0 z-40 shadow-sm">
         <div className="flex items-center space-x-2.5">
-          <div className="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center text-white">
+          <div className="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center text-white shadow-sm">
             <Shield className="w-4 h-4" />
           </div>
-          <span className="font-bold text-sm text-white">CMS Thủ Đô Door</span>
+          <div>
+            <span className="font-bold text-sm text-slate-900 block leading-tight">CMS Thủ Đô</span>
+            <span className="text-[10px] text-slate-500">Quản trị cửa cuốn</span>
+          </div>
         </div>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-1.5 text-slate-300 hover:text-white rounded-lg hover:bg-slate-800"
+          className="p-2 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition"
+          aria-label="Menu"
         >
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -51,7 +66,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, userName }:
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="lg:hidden bg-slate-950 border-b border-slate-800 p-4 space-y-1.5">
+        <div className="lg:hidden bg-white border-b border-slate-200 p-4 space-y-1.5 shadow-md">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = activeTab === item.id;
@@ -62,8 +77,10 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, userName }:
                   setActiveTab(item.id);
                   setMobileOpen(false);
                 }}
-                className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition ${
-                  active ? 'bg-orange-600 text-white' : 'text-slate-400 hover:bg-slate-900 hover:text-white'
+                className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition ${
+                  active
+                    ? 'bg-orange-500 text-white shadow'
+                    : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -71,21 +88,21 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, userName }:
               </button>
             );
           })}
-          <div className="pt-2 border-t border-slate-800 flex justify-between items-center">
+          <div className="pt-3 border-t border-slate-200 flex justify-between items-center text-xs font-semibold">
             <a
               href={SITE_URL}
               target="_blank"
               rel="noreferrer"
-              className="text-xs text-orange-400 hover:underline flex items-center space-x-1"
+              className="text-orange-600 hover:text-orange-700 flex items-center space-x-1"
             >
-              <span>Xem website</span>
-              <ExternalLink className="w-3 h-3" />
+              <span>Xem website ngoài</span>
+              <ExternalLink className="w-3.5 h-3.5" />
             </a>
             <button
               onClick={onLogout}
-              className="text-xs text-red-400 hover:underline flex items-center space-x-1"
+              className="text-red-600 hover:text-red-700 flex items-center space-x-1"
             >
-              <LogOut className="w-3 h-3" />
+              <LogOut className="w-3.5 h-3.5" />
               <span>Đăng xuất</span>
             </button>
           </div>
@@ -93,19 +110,54 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, userName }:
       )}
 
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-64 bg-slate-950 border-r border-slate-800 p-5 justify-between shrink-0 h-screen sticky top-0">
+      <aside
+        className={`hidden lg:flex flex-col bg-white border-r border-slate-200 justify-between shrink-0 h-screen sticky top-0 transition-all duration-300 z-30 shadow-sm ${
+          isCollapsed ? 'w-20 p-3' : 'w-64 p-5'
+        }`}
+      >
         <div className="space-y-6">
-          <div className="flex items-center space-x-3 px-2">
-            <div className="w-9 h-9 rounded-xl bg-orange-600 flex items-center justify-center text-white shadow">
-              <Shield className="w-5 h-5" />
+          {/* Brand header & toggle */}
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+            <div className={`flex items-center space-x-3 ${isCollapsed ? 'mx-auto' : ''}`}>
+              <div className="w-9 h-9 rounded-xl bg-orange-600 flex items-center justify-center text-white shadow-sm shrink-0">
+                <Shield className="w-5 h-5" />
+              </div>
+              {!isCollapsed && (
+                <div>
+                  <div className="font-extrabold text-slate-900 text-sm tracking-tight leading-tight">
+                    CMS THỦ ĐÔ
+                  </div>
+                  <p className="text-[11px] text-slate-500 font-medium">Hệ thống quản trị</p>
+                </div>
+              )}
             </div>
-            <div>
-              <div className="font-black text-white text-sm tracking-wide">CMS THỦ ĐÔ</div>
-              <p className="text-[11px] text-slate-400">Hệ thống quản trị</p>
-            </div>
+
+            {!isCollapsed && (
+              <button
+                onClick={() => setIsCollapsed(true)}
+                title="Thu gọn menu"
+                className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+            )}
           </div>
 
-          <nav className="space-y-1">
+          {/* Collapsed expand button */}
+          {isCollapsed && (
+            <div className="flex justify-center">
+              <button
+                onClick={() => setIsCollapsed(false)}
+                title="Mở rộng menu"
+                className="p-2 text-slate-500 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
+          {/* Navigation */}
+          <nav className="space-y-1.5">
             {navItems.map((item) => {
               const Icon = item.icon;
               const active = activeTab === item.id;
@@ -113,40 +165,54 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, userName }:
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition ${
+                  title={isCollapsed ? item.name : undefined}
+                  className={`w-full flex items-center rounded-xl text-sm font-semibold transition ${
+                    isCollapsed ? 'justify-center p-3' : 'space-x-3 px-3.5 py-2.5'
+                  } ${
                     active
-                      ? 'bg-orange-600 text-white shadow-md'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-900'
+                      ? 'bg-orange-500 text-white shadow-sm shadow-orange-500/20'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
                   <Icon className="w-4 h-4 shrink-0" />
-                  <span>{item.name}</span>
+                  {!isCollapsed && <span className="truncate">{item.name}</span>}
                 </button>
               );
             })}
           </nav>
         </div>
 
-        <div className="border-t border-slate-800 pt-4 space-y-3 px-2">
-          <a
-            href={SITE_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center justify-between text-xs text-slate-400 hover:text-orange-400 transition"
-          >
-            <span>Xem website ngoài</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
+        {/* Footer info & Logout */}
+        <div className="border-t border-slate-200 pt-4 space-y-3">
+          {!isCollapsed && (
+            <a
+              href={SITE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-between text-xs font-semibold text-slate-500 hover:text-orange-600 transition px-2 py-1.5 rounded-lg hover:bg-slate-50"
+            >
+              <span>Xem website ngoài</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
 
-          <div className="flex items-center justify-between pt-1">
-            <div className="truncate text-xs">
-              <div className="font-semibold text-white truncate">{userName || 'Quản trị viên'}</div>
-              <div className="text-[10px] text-slate-400">admin@cuacuonthudo.com</div>
+          <div
+            className={`flex items-center justify-between bg-slate-50 border border-slate-200 rounded-xl p-2.5 ${
+              isCollapsed ? 'flex-col space-y-2' : ''
+            }`}
+          >
+            <div className={`truncate ${isCollapsed ? 'text-center' : 'pr-2'}`}>
+              <div className="font-bold text-slate-900 text-xs truncate">
+                {isCollapsed ? (userName || 'QTV').charAt(0) : userName || 'Quản trị viên'}
+              </div>
+              {!isCollapsed && (
+                <div className="text-[10px] text-slate-500 font-medium">admin@cuacuonthudo.com</div>
+              )}
             </div>
             <button
               onClick={onLogout}
               title="Đăng xuất"
-              className="p-1.5 text-slate-400 hover:text-red-400 hover:bg-slate-900 rounded-lg transition"
+              className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition"
             >
               <LogOut className="w-4 h-4" />
             </button>
@@ -156,4 +222,3 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, userName }:
     </>
   );
 }
-

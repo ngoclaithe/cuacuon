@@ -45,14 +45,20 @@ export class UploadService {
         Key: key,
         Body: file.buffer,
         ContentType: file.mimetype,
+        Metadata: {
+          originalName: encodeURIComponent(file.originalname),
+          sizeBytes: String(file.size),
+          uploadedAt: new Date().toISOString(),
+        },
       }),
     );
 
     // If R2_PUBLIC_URL is provided (e.g. custom domain or r2.dev), use that.
-    // Otherwise fallback to backend proxy url /api/upload/file/${key}
+    // Otherwise fallback to full backend proxy url
+    const backendUrl = this.configService.get<string>('BACKEND_URL') || 'https://api-cuacuon.dosutech.site';
     const url = this.publicUrl
       ? `${this.publicUrl.replace(/\/+$/, '')}/${key}`
-      : `/api/upload/file/${key}`;
+      : `${backendUrl.replace(/\/+$/, '')}/api/upload/file/${key}`;
 
     return {
       url,

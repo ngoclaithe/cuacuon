@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Phone, CheckCircle, Clock, AlertTriangle, MessageSquare } from 'lucide-react';
+import { Phone, AlertTriangle, MessageSquare, Check, ArrowRight } from 'lucide-react';
 import { API_BASE } from '../config';
 import type { QuoteRequest } from '../types';
 
@@ -61,32 +61,40 @@ export default function QuotesView({ token }: QuotesViewProps) {
   };
 
   if (loading) {
-    return <div className="text-slate-400 text-sm py-10">Đang tải danh sách yêu cầu...</div>;
+    return (
+      <div className="text-slate-500 text-sm py-12 flex items-center justify-center font-medium">
+        Đang tải danh sách yêu cầu...
+      </div>
+    );
   }
 
   return (
     <div className="space-y-6 max-w-6xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-white tracking-tight">Yêu cầu báo giá & cứu hộ</h1>
-          <p className="text-xs text-slate-400 mt-0.5">Tiếp nhận thông tin khách hàng và điều phối thợ xử lý</p>
+          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+            Yêu cầu báo giá & cứu hộ
+          </h1>
+          <p className="text-xs text-slate-500 font-medium mt-0.5">
+            Tiếp nhận thông tin khách hàng và điều phối thợ xử lý
+          </p>
         </div>
 
         {/* Filter buttons */}
-        <div className="flex flex-wrap gap-1.5 bg-slate-900 border border-slate-800 p-1 rounded-xl">
+        <div className="inline-flex flex-wrap gap-1 bg-slate-200/80 p-1 rounded-xl">
           {[
             { id: '', label: 'Tất cả' },
             { id: 'PENDING', label: 'Chờ liên hệ' },
-            { id: 'CONTACTED', label: 'Đã liên hệ' },
+            { id: 'CONTACTED', label: 'Đang xử lý' },
             { id: 'COMPLETED', label: 'Hoàn thành' },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setFilterStatus(tab.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${
                 filterStatus === tab.id
-                  ? 'bg-orange-600 text-white'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  ? 'bg-white text-orange-600 shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               {tab.label}
@@ -95,53 +103,57 @@ export default function QuotesView({ token }: QuotesViewProps) {
         </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-3.5">
         {quotes.length === 0 ? (
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-10 text-center text-slate-500 text-xs">
+          <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center text-slate-400 text-xs shadow-sm font-medium">
             Không tìm thấy yêu cầu nào phù hợp
           </div>
         ) : (
           quotes.map((q) => (
             <div
               key={q.id}
-              className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 hover:border-slate-700 transition"
+              className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm hover:shadow-md transition"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-3">
-                <div className="flex items-center space-x-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3.5">
+                <div className="flex items-center space-x-3.5">
                   <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${
                       q.serviceType === 'CUU_HO_KHAN_CAP'
-                        ? 'bg-red-500/10 text-red-400'
-                        : 'bg-orange-500/10 text-orange-400'
+                        ? 'bg-red-50 text-red-600 border-red-200'
+                        : 'bg-orange-50 text-orange-600 border-orange-200'
                     }`}
                   >
                     {q.serviceType === 'CUU_HO_KHAN_CAP' ? (
-                      <AlertTriangle className="w-4 h-4" />
+                      <AlertTriangle className="w-5 h-5" />
                     ) : (
-                      <Phone className="w-4 h-4" />
+                      <Phone className="w-5 h-5" />
                     )}
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-white">{q.customerName}</div>
-                    <div className="text-xs text-slate-400">{q.address || 'Chưa cung cấp địa chỉ'}</div>
+                    <div className="text-sm sm:text-base font-extrabold text-slate-900">
+                      {q.customerName}
+                    </div>
+                    <div className="text-xs text-slate-500 font-medium mt-0.5">
+                      {q.address || 'Chưa cung cấp địa chỉ'}
+                    </div>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-3">
                   <a
                     href={`tel:${q.phone}`}
-                    className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-orange-600 text-white font-bold text-xs hover:bg-orange-500 transition"
+                    className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-orange-600 text-white font-bold text-xs hover:bg-orange-500 transition shadow-sm"
                   >
-                    <Phone className="w-3 h-3" />
+                    <Phone className="w-3.5 h-3.5" />
                     <span>{q.phone}</span>
                   </a>
                   <span
-                    className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold border ${
+                    className={`px-3 py-1 rounded-full text-[11px] font-bold border ${
                       q.status === 'PENDING'
-                        ? 'bg-amber-500/10 text-amber-400 border-amber-500/20'
+                        ? 'bg-amber-50 text-amber-700 border-amber-200'
                         : q.status === 'COMPLETED'
-                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                        : 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                        : 'bg-blue-50 text-blue-700 border-blue-200'
                     }`}
                   >
                     {q.status === 'PENDING'
@@ -154,27 +166,37 @@ export default function QuotesView({ token }: QuotesViewProps) {
               </div>
 
               {/* Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs bg-slate-50 p-4 rounded-xl border border-slate-100">
                 <div>
-                  <span className="text-slate-500 block text-[10px]">Loại cửa quan tâm:</span>
-                  <span className="text-slate-200 font-medium">{q.doorType || 'Tư vấn chung'}</span>
+                  <span className="text-slate-500 block text-[11px] font-semibold">
+                    Loại cửa quan tâm:
+                  </span>
+                  <span className="text-slate-800 font-bold mt-0.5 block">
+                    {q.doorType || 'Tư vấn chung'}
+                  </span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block text-[10px]">Dự toán ước tính:</span>
-                  <span className="text-orange-400 font-bold">
+                  <span className="text-slate-500 block text-[11px] font-semibold">
+                    Dự toán ước tính:
+                  </span>
+                  <span className="text-orange-600 font-black mt-0.5 block">
                     {q.estimatedPrice ? `${q.estimatedPrice.toLocaleString('vi-VN')} đ` : 'Chưa có'}
                   </span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block text-[10px]">Ghi chú khách hàng:</span>
-                  <span className="text-slate-300 truncate block">{q.notes || 'Không có'}</span>
+                  <span className="text-slate-500 block text-[11px] font-semibold">
+                    Ghi chú khách hàng:
+                  </span>
+                  <span className="text-slate-700 font-medium truncate block mt-0.5">
+                    {q.notes || 'Không có'}
+                  </span>
                 </div>
               </div>
 
               {/* Status Update & Note */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-1">
                 <div className="flex-1 flex items-center space-x-2">
-                  <MessageSquare className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <MessageSquare className="w-4 h-4 text-slate-400 shrink-0" />
                   <input
                     type="text"
                     placeholder="Ghi chú nội bộ cho yêu cầu này..."
@@ -182,21 +204,21 @@ export default function QuotesView({ token }: QuotesViewProps) {
                     onChange={(e) =>
                       setAdminNoteInput({ ...adminNoteInput, [q.id]: e.target.value })
                     }
-                    className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-orange-500 placeholder-slate-600"
+                    className="flex-1 bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-orange-500 placeholder-slate-400"
                   />
                 </div>
 
                 <div className="flex items-center space-x-2 shrink-0">
-                  <span className="text-[11px] text-slate-400">Chuyển:</span>
+                  <span className="text-xs font-semibold text-slate-500">Chuyển:</span>
                   <button
                     onClick={() => updateStatus(q.id, 'CONTACTED')}
-                    className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-blue-300 rounded-lg text-xs transition font-medium"
+                    className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-xl text-xs transition font-bold"
                   >
                     Đã liên hệ
                   </button>
                   <button
                     onClick={() => updateStatus(q.id, 'COMPLETED')}
-                    className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-emerald-300 rounded-lg text-xs transition font-medium"
+                    className="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-xl text-xs transition font-bold"
                   >
                     Hoàn thành
                   </button>
